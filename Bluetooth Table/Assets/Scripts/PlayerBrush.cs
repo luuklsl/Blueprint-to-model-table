@@ -16,8 +16,8 @@ public class PlayerBrush : MonoBehaviour
                 var pallet = hit.collider.GetComponent<PaintCanvas>();
                 if (pallet != null)
                 {
-                    Debug.Log(hit.textureCoord);
-                    Debug.Log(hit.point);
+                    Debug.Log("Hit on texture at:" + hit.textureCoord);
+                    //Debug.Log(hit.point);
 
                     Renderer rend = hit.transform.GetComponent<Renderer>();
                     MeshCollider meshCollider = hit.collider as MeshCollider;
@@ -30,7 +30,6 @@ public class PlayerBrush : MonoBehaviour
                     pixelUV.x *= tex.width;
                     pixelUV.y *= tex.height;
 
-                    CmdBrushAreaWithColorOnServer(pixelUV, ColorPicker.SelectedColor, BrushSizeSlider.BrushSize);
                     BrushAreaWithColor(pixelUV, ColorPicker.SelectedColor, BrushSizeSlider.BrushSize);
                 }
             }
@@ -38,18 +37,6 @@ public class PlayerBrush : MonoBehaviour
     }
     
     
-    private void CmdBrushAreaWithColorOnServer(Vector2 pixelUV, Color color, int size)
-    {
-        RpcBrushAreaWithColorOnClients(pixelUV, color, size);
-        BrushAreaWithColor(pixelUV, color, size);
-    }
-
-    
-    private void RpcBrushAreaWithColorOnClients(Vector2 pixelUV, Color color, int size)
-    {
-        BrushAreaWithColor(pixelUV, color, size);
-    }
-
     private void BrushAreaWithColor(Vector2 pixelUV, Color color, int size)
     {
         for (int x = -size; x < size; x++)
