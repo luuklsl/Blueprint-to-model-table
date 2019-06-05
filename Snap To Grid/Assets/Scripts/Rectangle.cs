@@ -19,8 +19,8 @@ public class Rectangle : MonoBehaviour
 
 
     //experimenting
-    GameObject GuidingPoint_1;
-    GameObject GuidingPoint_2;
+     GameObject GuidingPoint_1;
+     GameObject GuidingPoint_2;
 
 
     private void Awake()
@@ -38,9 +38,8 @@ public class Rectangle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        
-         RaycastHit hitInfo;
+
+        RaycastHit hitInfo;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         if (Input.GetMouseButtonDown(0))
@@ -82,6 +81,9 @@ public class Rectangle : MonoBehaviour
         GuidingPoint_2 = (GameObject)Instantiate(IntermediateWallPrefab,
             StartWallPoint.transform.position, Quaternion.identity);
 
+        //GuidingPoint_1.transform.LookAt(StartWallPoint.transform.position);
+        //GuidingPoint_2.transform.LookAt(EndWallPoint.transform.position);
+
         IntermediateWall_top = (GameObject)Instantiate(IntermediateWallPrefab,
             StartWallPoint.transform.position, Quaternion.identity);
         IntermediateWall_right = (GameObject)Instantiate(IntermediateWallPrefab,
@@ -95,21 +97,202 @@ public class Rectangle : MonoBehaviour
     {
         creating = false;
         EndWallPoint.transform.position = grid.GetNearestPointOnGrid(clickpoint);
+
+        //Destroys the intermediate walls used for visual and replaces them with wall segments
+        Destroy(IntermediateWall_top);
+        Destroy(IntermediateWall_right);
+        Destroy(IntermediateWall_bottom);
+        Destroy(IntermediateWall_left);
+
+        //Top segment
+        //Calculates the distance between start and end wall points
+        float distance_top = Vector3.Distance(StartWallPoint.transform.position,
+            GuidingPoint_1.transform.position);
+
+        //Creates subsequent segments and places them one after the other in order to create
+        //a line after the left-click is released. The number of segments is equal to the 
+        //distance between the start and end points.
+        for (float i = 0; i < distance_top; i++)
+        {
+            float increment = 1f;
+
+            //Checks for direction of creation for the segments
+            if (StartWallPoint.transform.position.z > EndWallPoint.transform.position.z 
+                & StartWallPoint.transform.position.x < EndWallPoint.transform.position.x)
+            {
+                GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
+                StartWallPoint.transform.position + (increment * i)
+                * (StartWallPoint.transform.right), StartWallPoint.transform.rotation);
+
+            }
+
+            else if (StartWallPoint.transform.position.z > EndWallPoint.transform.position.z
+                & StartWallPoint.transform.position.x > EndWallPoint.transform.position.x)
+            {
+                GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
+                StartWallPoint.transform.position + (increment * i)
+                * (-StartWallPoint.transform.right), StartWallPoint.transform.rotation);
+            }
+
+            else if (StartWallPoint.transform.position.z < EndWallPoint.transform.position.z
+                 & StartWallPoint.transform.position.x < EndWallPoint.transform.position.x)
+            {
+                GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
+                StartWallPoint.transform.position + (increment * i)
+                * (StartWallPoint.transform.right), StartWallPoint.transform.rotation);
+            }
+
+            else if (StartWallPoint.transform.position.z < EndWallPoint.transform.position.z
+                & StartWallPoint.transform.position.x > EndWallPoint.transform.position.x)
+            {
+                GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
+                StartWallPoint.transform.position + (increment * i)
+                * (-StartWallPoint.transform.right), StartWallPoint.transform.rotation);
+            }
+
+        }
+        //Right segment
+        float distance_right = Vector3.Distance(StartWallPoint.transform.position,
+            GuidingPoint_2.transform.position);
+
+        for (float i = 0; i < distance_right; i++)
+        {
+            float increment = 1f;
+
+            if (StartWallPoint.transform.position.z > EndWallPoint.transform.position.z
+                & StartWallPoint.transform.position.x < EndWallPoint.transform.position.x)
+            {
+                GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
+                GuidingPoint_1.transform.position + (increment * i)
+                * (-StartWallPoint.transform.forward), StartWallPoint.transform.rotation);
+            }
+
+            else if (StartWallPoint.transform.position.z > EndWallPoint.transform.position.z
+                & StartWallPoint.transform.position.x > EndWallPoint.transform.position.x)
+            {
+                GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
+                GuidingPoint_2.transform.position + (increment * i)
+                * (StartWallPoint.transform.forward), StartWallPoint.transform.rotation);
+            }
+
+            else if (StartWallPoint.transform.position.z < EndWallPoint.transform.position.z
+                & StartWallPoint.transform.position.x < EndWallPoint.transform.position.x)
+            {
+                GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
+                GuidingPoint_1.transform.position + (increment * i)
+                * (StartWallPoint.transform.forward), StartWallPoint.transform.rotation);
+            }
+
+            else if (StartWallPoint.transform.position.z < EndWallPoint.transform.position.z
+           & StartWallPoint.transform.position.x > EndWallPoint.transform.position.x)
+            {
+                GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
+                StartWallPoint.transform.position + (increment * i)
+                * (StartWallPoint.transform.forward), StartWallPoint.transform.rotation);
+            }
+            
+        }
+
+        //Bottom segment
+        float distance_bottom = Vector3.Distance(EndWallPoint.transform.position,
+            GuidingPoint_2.transform.position);
+
+        for (float i = 0; i < distance_bottom; i++)
+        {
+            float increment = 1f;
+
+            if (StartWallPoint.transform.position.z > EndWallPoint.transform.position.z
+                & StartWallPoint.transform.position.x < EndWallPoint.transform.position.x)
+            {
+                GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
+                EndWallPoint.transform.position + (increment * i)
+                * (-EndWallPoint.transform.right), StartWallPoint.transform.rotation);
+
+            }
+
+            else if (StartWallPoint.transform.position.z > EndWallPoint.transform.position.z
+                & StartWallPoint.transform.position.x > EndWallPoint.transform.position.x)
+            {
+                GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
+                EndWallPoint.transform.position + (increment * i)
+                * (EndWallPoint.transform.right), StartWallPoint.transform.rotation);
+            }
+
+            else if (StartWallPoint.transform.position.z < EndWallPoint.transform.position.z
+                & StartWallPoint.transform.position.x < EndWallPoint.transform.position.x)
+            {
+                GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
+                EndWallPoint.transform.position + (increment * i)
+                * (-EndWallPoint.transform.right), StartWallPoint.transform.rotation);
+            }
+
+            else if (StartWallPoint.transform.position.z < EndWallPoint.transform.position.z
+                & StartWallPoint.transform.position.x > EndWallPoint.transform.position.x)
+            {
+                GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
+                EndWallPoint.transform.position + (increment * i)
+                * (EndWallPoint.transform.right), StartWallPoint.transform.rotation);
+            }
+        }
+
+        //Left segment
+        float distance_left = Vector3.Distance(EndWallPoint.transform.position,
+            GuidingPoint_1.transform.position);
+
+        for (float i = 0; i < distance_left; i++)
+        {
+            float increment = 1f;
+
+            if (StartWallPoint.transform.position.z > EndWallPoint.transform.position.z
+                & StartWallPoint.transform.position.x < EndWallPoint.transform.position.x)
+            {
+                GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
+                StartWallPoint.transform.position + (increment * i)
+                * (-StartWallPoint.transform.forward), StartWallPoint.transform.rotation);
+            }
+
+            else if (StartWallPoint.transform.position.z > EndWallPoint.transform.position.z
+                & StartWallPoint.transform.position.x > EndWallPoint.transform.position.x)
+            {
+                GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
+                EndWallPoint.transform.position + (increment * i)
+                * (EndWallPoint.transform.forward), StartWallPoint.transform.rotation);
+            }
+
+            else if (StartWallPoint.transform.position.z < EndWallPoint.transform.position.z
+                & StartWallPoint.transform.position.x < EndWallPoint.transform.position.x)
+            {
+                GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
+                StartWallPoint.transform.position + (increment * i)
+                * (StartWallPoint.transform.forward), StartWallPoint.transform.rotation);
+            }
+
+            else if (StartWallPoint.transform.position.z < EndWallPoint.transform.position.z
+                & StartWallPoint.transform.position.x > EndWallPoint.transform.position.x)
+            {
+                GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
+                EndWallPoint.transform.position + (increment * i)
+                * (-StartWallPoint.transform.forward), StartWallPoint.transform.rotation);
+            }
+
+        }
+
+
     }
     void adjust(Vector3 clickpoint)
     {
         EndWallPoint.transform.position = grid.GetNearestPointOnGrid(clickpoint);
-        adjustIntermediateWall();
+        placeIntermediateWallsforVisual();
 
     }
-    void adjustIntermediateWall()
+    void placeIntermediateWallsforVisual()
     {
-
+///////
         Vector3 GuidingPoint_1_pos = new Vector3(EndWallPoint.transform.position.x,
             StartWallPoint.transform.position.y, StartWallPoint.transform.position.z);
 
         GuidingPoint_1.transform.position = GuidingPoint_1_pos;
-
+        
         Vector3 GuidingPoint_2_pos = new Vector3(StartWallPoint.transform.position.x,
            StartWallPoint.transform.position.y, EndWallPoint.transform.position.z);
 
