@@ -10,17 +10,20 @@ public class Rectangle : MonoBehaviour
     public GameObject StartWallPoint;
     public GameObject EndWallPoint;
 
+    //GuidingPoint_1 is inline with StartWallPoint, GuidingPoint_2 is inline with
+    //EndWallPoint
+    GameObject GuidingPoint_1;
+    GameObject GuidingPoint_2;
+
     public GameObject IntermediateWallPrefab;
 
+
+    //These gameobjects are create only as visual guides and are subsequently replaced
+    //by individual wall segments
     GameObject IntermediateWall_top;
     GameObject IntermediateWall_right;
     GameObject IntermediateWall_bottom;
     GameObject IntermediateWall_left;
-
-
-    //experimenting
-     GameObject GuidingPoint_1;
-     GameObject GuidingPoint_2;
 
 
     private void Awake()
@@ -48,15 +51,41 @@ public class Rectangle : MonoBehaviour
             if (Physics.Raycast(ray, out hitInfo))
             {
                 setStart(hitInfo.point);
+
+                //On click of the left mouse-button changes the layers to "Ignore Raycast"
+                //to avoid having the line tilt upwards. 
+                StartWallPoint.layer = 2;
+                EndWallPoint.layer = 2;
+                GuidingPoint_1.layer = 2;
+                GuidingPoint_2.layer = 2;
+                IntermediateWall_top.layer = 2;
+                IntermediateWall_right.layer = 2;
+                IntermediateWall_bottom.layer = 2;
+                IntermediateWall_left.layer = 2;
+
             }
         }
         else if (Input.GetMouseButtonUp(0))
         {
 
-
             if (Physics.Raycast(ray, out hitInfo))
             {
                 setEnd(hitInfo.point);
+            }
+        }
+
+        //Destroys only if object is block, probably should update when NOT terrain
+        else if (Input.GetMouseButton(1))
+        {
+
+            if (Physics.Raycast(ray, out hitInfo))
+            {
+                RemoveObjectNear(hitInfo.point);
+                name = hitInfo.transform.gameObject.name;
+                if (name != "Terrain" && name != "Grid")
+                {
+                    Destroy(hitInfo.transform.gameObject);
+                }
             }
         }
         else
@@ -71,6 +100,13 @@ public class Rectangle : MonoBehaviour
         }
     }
 
+    private void RemoveObjectNear(Vector3 clickPoint)
+    {
+        var finalPosition = grid.GetNearestPointOnGrid(clickPoint);
+
+
+    }
+
     void setStart(Vector3 clickpoint)
     {
         creating = true;
@@ -81,8 +117,6 @@ public class Rectangle : MonoBehaviour
         GuidingPoint_2 = (GameObject)Instantiate(IntermediateWallPrefab,
             StartWallPoint.transform.position, Quaternion.identity);
 
-        //GuidingPoint_1.transform.LookAt(StartWallPoint.transform.position);
-        //GuidingPoint_2.transform.LookAt(EndWallPoint.transform.position);
 
         IntermediateWall_top = (GameObject)Instantiate(IntermediateWallPrefab,
             StartWallPoint.transform.position, Quaternion.identity);
@@ -124,6 +158,8 @@ public class Rectangle : MonoBehaviour
                 StartWallPoint.transform.position + (increment * i)
                 * (StartWallPoint.transform.right), StartWallPoint.transform.rotation);
 
+                //Converts the layers to "Default" in order to be able to delete the objects
+                wall_between.layer = 0;
             }
 
             else if (StartWallPoint.transform.position.z > EndWallPoint.transform.position.z
@@ -132,6 +168,9 @@ public class Rectangle : MonoBehaviour
                 GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
                 StartWallPoint.transform.position + (increment * i)
                 * (-StartWallPoint.transform.right), StartWallPoint.transform.rotation);
+
+                //Converts the layers to "Default" in order to be able to delete the objects
+                wall_between.layer = 0;
             }
 
             else if (StartWallPoint.transform.position.z < EndWallPoint.transform.position.z
@@ -140,6 +179,9 @@ public class Rectangle : MonoBehaviour
                 GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
                 StartWallPoint.transform.position + (increment * i)
                 * (StartWallPoint.transform.right), StartWallPoint.transform.rotation);
+
+                //Converts the layers to "Default" in order to be able to delete the objects
+                wall_between.layer = 0;
             }
 
             else if (StartWallPoint.transform.position.z < EndWallPoint.transform.position.z
@@ -148,6 +190,9 @@ public class Rectangle : MonoBehaviour
                 GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
                 StartWallPoint.transform.position + (increment * i)
                 * (-StartWallPoint.transform.right), StartWallPoint.transform.rotation);
+
+                //Converts the layers to "Default" in order to be able to delete the objects
+                wall_between.layer = 0;
             }
 
         }
@@ -165,6 +210,9 @@ public class Rectangle : MonoBehaviour
                 GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
                 GuidingPoint_1.transform.position + (increment * i)
                 * (-StartWallPoint.transform.forward), StartWallPoint.transform.rotation);
+
+                //Converts the layers to "Default" in order to be able to delete the objects
+                wall_between.layer = 0;
             }
 
             else if (StartWallPoint.transform.position.z > EndWallPoint.transform.position.z
@@ -173,6 +221,9 @@ public class Rectangle : MonoBehaviour
                 GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
                 GuidingPoint_2.transform.position + (increment * i)
                 * (StartWallPoint.transform.forward), StartWallPoint.transform.rotation);
+
+                //Converts the layers to "Default" in order to be able to delete the objects
+                wall_between.layer = 0;
             }
 
             else if (StartWallPoint.transform.position.z < EndWallPoint.transform.position.z
@@ -181,6 +232,9 @@ public class Rectangle : MonoBehaviour
                 GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
                 GuidingPoint_1.transform.position + (increment * i)
                 * (StartWallPoint.transform.forward), StartWallPoint.transform.rotation);
+
+                //Converts the layers to "Default" in order to be able to delete the objects
+                wall_between.layer = 0;
             }
 
             else if (StartWallPoint.transform.position.z < EndWallPoint.transform.position.z
@@ -189,9 +243,12 @@ public class Rectangle : MonoBehaviour
                 GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
                 StartWallPoint.transform.position + (increment * i)
                 * (StartWallPoint.transform.forward), StartWallPoint.transform.rotation);
+
+                //Converts the layers to "Default" in order to be able to delete the objects
+                wall_between.layer = 0;
             }
-            
-        }
+
+       }
 
         //Bottom segment
         float distance_bottom = Vector3.Distance(EndWallPoint.transform.position,
@@ -208,6 +265,8 @@ public class Rectangle : MonoBehaviour
                 EndWallPoint.transform.position + (increment * i)
                 * (-EndWallPoint.transform.right), StartWallPoint.transform.rotation);
 
+                //Converts the layers to "Default" in order to be able to delete the objects
+                wall_between.layer = 0;
             }
 
             else if (StartWallPoint.transform.position.z > EndWallPoint.transform.position.z
@@ -216,6 +275,9 @@ public class Rectangle : MonoBehaviour
                 GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
                 EndWallPoint.transform.position + (increment * i)
                 * (EndWallPoint.transform.right), StartWallPoint.transform.rotation);
+
+                //Converts the layers to "Default" in order to be able to delete the objects
+                wall_between.layer = 0;
             }
 
             else if (StartWallPoint.transform.position.z < EndWallPoint.transform.position.z
@@ -224,6 +286,9 @@ public class Rectangle : MonoBehaviour
                 GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
                 EndWallPoint.transform.position + (increment * i)
                 * (-EndWallPoint.transform.right), StartWallPoint.transform.rotation);
+
+                //Converts the layers to "Default" in order to be able to delete the objects
+                wall_between.layer = 0;
             }
 
             else if (StartWallPoint.transform.position.z < EndWallPoint.transform.position.z
@@ -232,7 +297,11 @@ public class Rectangle : MonoBehaviour
                 GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
                 EndWallPoint.transform.position + (increment * i)
                 * (EndWallPoint.transform.right), StartWallPoint.transform.rotation);
+
+                //Converts the layers to "Default" in order to be able to delete the objects
+                wall_between.layer = 0;
             }
+
         }
 
         //Left segment
@@ -249,6 +318,9 @@ public class Rectangle : MonoBehaviour
                 GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
                 StartWallPoint.transform.position + (increment * i)
                 * (-StartWallPoint.transform.forward), StartWallPoint.transform.rotation);
+
+                //Converts the layers to "Default" in order to be able to delete the objects
+                wall_between.layer = 0;
             }
 
             else if (StartWallPoint.transform.position.z > EndWallPoint.transform.position.z
@@ -257,6 +329,9 @@ public class Rectangle : MonoBehaviour
                 GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
                 EndWallPoint.transform.position + (increment * i)
                 * (EndWallPoint.transform.forward), StartWallPoint.transform.rotation);
+
+                //Converts the layers to "Default" in order to be able to delete the objects
+                wall_between.layer = 0;
             }
 
             else if (StartWallPoint.transform.position.z < EndWallPoint.transform.position.z
@@ -265,6 +340,9 @@ public class Rectangle : MonoBehaviour
                 GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
                 StartWallPoint.transform.position + (increment * i)
                 * (StartWallPoint.transform.forward), StartWallPoint.transform.rotation);
+
+                //Converts the layers to "Default" in order to be able to delete the objects
+                wall_between.layer = 0;
             }
 
             else if (StartWallPoint.transform.position.z < EndWallPoint.transform.position.z
@@ -273,10 +351,26 @@ public class Rectangle : MonoBehaviour
                 GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
                 EndWallPoint.transform.position + (increment * i)
                 * (-StartWallPoint.transform.forward), StartWallPoint.transform.rotation);
+
+                //Converts the layers to "Default" in order to be able to delete the objects
+                wall_between.layer = 0;
             }
 
         }
 
+        //Converts the layers to "Default" in order to be able to delete the objects
+        //Does not set Start and EndWallPoints to default to avoid deleting them.
+        //Instead it justs repositions them to default position outside of the grid
+        //StartWallPoint.layer = 0;
+        //EndWallPoint.layer = 0;
+        GuidingPoint_1.layer = 0;
+        GuidingPoint_2.layer = 0;
+
+        //Resets the position of the StartWallPoint and EndWallPoint to avoid 
+        //deleting them
+        Vector3 initial_position = new Vector3(-0.106f, 1.25f, -0.77f);
+        StartWallPoint.transform.position = initial_position;
+        EndWallPoint.transform.position = initial_position;
 
     }
     void adjust(Vector3 clickpoint)
@@ -287,7 +381,7 @@ public class Rectangle : MonoBehaviour
     }
     void placeIntermediateWallsforVisual()
     {
-///////
+        //Position the 2 guiding points one at each remaining rectangle cornerns
         Vector3 GuidingPoint_1_pos = new Vector3(EndWallPoint.transform.position.x,
             StartWallPoint.transform.position.y, StartWallPoint.transform.position.z);
 
