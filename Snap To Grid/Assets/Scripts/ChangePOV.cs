@@ -5,7 +5,6 @@ using UnityEngine;
 public class ChangePOV : MonoBehaviour
 {
 
-    public Transform Player;
     public Camera FirstPersonCam, ThirdPersonCam;
     public KeyCode TKey;
     public GameObject FirstpersonControls;
