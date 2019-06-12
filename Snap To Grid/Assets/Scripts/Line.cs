@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -189,7 +189,7 @@ public class Line : MonoBehaviour
         {
 
             GameObject building_wall = (GameObject)Instantiate(IntermediateWallPrefab,
-            StartWallPoint.transform.position + (increment * i)
+            StartWallPoint.transform.position + new Vector3(0, 0.7f, 0) + (increment * i)
             * StartWallPoint.transform.forward, StartWallPoint.transform.rotation);
 
             building_wall.tag = "building_wall";
