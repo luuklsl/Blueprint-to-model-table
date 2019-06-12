@@ -113,9 +113,9 @@ public class Rectangle : MonoBehaviour
         StartWallPoint_Rect.transform.position = grid.GetNearestPointOnGrid(clickpoint);
         
         GuidingPoint_1 = (GameObject)Instantiate(IntermediateWallPrefab,
-            StartWallPoint_Rect.transform.position, Quaternion.identity);
+            StartWallPoint_Rect.transform.position + new Vector3(0, 0.7f, 0), Quaternion.identity);
         GuidingPoint_2 = (GameObject)Instantiate(IntermediateWallPrefab,
-            StartWallPoint_Rect.transform.position, Quaternion.identity);
+            StartWallPoint_Rect.transform.position + new Vector3(0, 0.7f, 0), Quaternion.identity);
 
 
         IntermediateWall_top = (GameObject)Instantiate(IntermediateWallPrefab,
@@ -155,7 +155,7 @@ public class Rectangle : MonoBehaviour
                 & StartWallPoint_Rect.transform.position.x < EndWallPoint_Rect.transform.position.x)
             {
                 GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
-                StartWallPoint_Rect.transform.position + (increment * i)
+                StartWallPoint_Rect.transform.position+ new Vector3(0, 0.7f, 0) + (increment * i)
                 * (StartWallPoint_Rect.transform.right), StartWallPoint_Rect.transform.rotation);
 
                 //Converts the layers to "Default" in order to be able to delete the objects
@@ -166,7 +166,7 @@ public class Rectangle : MonoBehaviour
                 & StartWallPoint_Rect.transform.position.x > EndWallPoint_Rect.transform.position.x)
             {
                 GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
-                StartWallPoint_Rect.transform.position + (increment * i)
+                StartWallPoint_Rect.transform.position + new Vector3(0, 0.7f, 0) +(increment * i)
                 * (-StartWallPoint_Rect.transform.right), StartWallPoint_Rect.transform.rotation);
 
                 //Converts the layers to "Default" in order to be able to delete the objects
@@ -177,7 +177,7 @@ public class Rectangle : MonoBehaviour
                  & StartWallPoint_Rect.transform.position.x < EndWallPoint_Rect.transform.position.x)
             {
                 GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
-                StartWallPoint_Rect.transform.position + (increment * i)
+                StartWallPoint_Rect.transform.position + new Vector3(0, 0.7f, 0) + (increment * i)
                 * (StartWallPoint_Rect.transform.right), StartWallPoint_Rect.transform.rotation);
 
                 //Converts the layers to "Default" in order to be able to delete the objects
@@ -188,7 +188,7 @@ public class Rectangle : MonoBehaviour
                 & StartWallPoint_Rect.transform.position.x > EndWallPoint_Rect.transform.position.x)
             {
                 GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
-                StartWallPoint_Rect.transform.position + (increment * i)
+                StartWallPoint_Rect.transform.position + new Vector3(0, 0.7f, 0) + (increment * i)
                 * (-StartWallPoint_Rect.transform.right), StartWallPoint_Rect.transform.rotation);
 
                 //Converts the layers to "Default" in order to be able to delete the objects
@@ -208,7 +208,7 @@ public class Rectangle : MonoBehaviour
                 & StartWallPoint_Rect.transform.position.x < EndWallPoint_Rect.transform.position.x)
             {
                 GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
-                GuidingPoint_1.transform.position + (increment * i)
+                GuidingPoint_1.transform.position + new Vector3(0, 0.7f, 0) + (increment * i)
                 * (-StartWallPoint_Rect.transform.forward), StartWallPoint_Rect.transform.rotation);
 
                 //Converts the layers to "Default" in order to be able to delete the objects
@@ -219,7 +219,7 @@ public class Rectangle : MonoBehaviour
                 & StartWallPoint_Rect.transform.position.x > EndWallPoint_Rect.transform.position.x)
             {
                 GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
-                GuidingPoint_2.transform.position + (increment * i)
+                GuidingPoint_2.transform.position + new Vector3(0, 0.7f, 0) + (increment * i)
                 * (StartWallPoint_Rect.transform.forward), StartWallPoint_Rect.transform.rotation);
 
                 //Converts the layers to "Default" in order to be able to delete the objects
@@ -230,7 +230,7 @@ public class Rectangle : MonoBehaviour
                 & StartWallPoint_Rect.transform.position.x < EndWallPoint_Rect.transform.position.x)
             {
                 GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
-                GuidingPoint_1.transform.position + (increment * i)
+                GuidingPoint_1.transform.position + new Vector3(0, 0.7f, 0) + (increment * i)
                 * (StartWallPoint_Rect.transform.forward), StartWallPoint_Rect.transform.rotation);
 
                 //Converts the layers to "Default" in order to be able to delete the objects
@@ -241,7 +241,7 @@ public class Rectangle : MonoBehaviour
            & StartWallPoint_Rect.transform.position.x > EndWallPoint_Rect.transform.position.x)
             {
                 GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
-                StartWallPoint_Rect.transform.position + (increment * i)
+                StartWallPoint_Rect.transform.position + new Vector3(0, 0.7f, 0) + (increment * i)
                 * (StartWallPoint_Rect.transform.forward), StartWallPoint_Rect.transform.rotation);
 
                 //Converts the layers to "Default" in order to be able to delete the objects
@@ -262,7 +262,7 @@ public class Rectangle : MonoBehaviour
                 & StartWallPoint_Rect.transform.position.x < EndWallPoint_Rect.transform.position.x)
             {
                 GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
-                EndWallPoint_Rect.transform.position + (increment * i)
+                EndWallPoint_Rect.transform.position + new Vector3(0, 0.7f, 0) + (increment * i)
                 * (-EndWallPoint_Rect.transform.right), StartWallPoint_Rect.transform.rotation);
 
                 //Converts the layers to "Default" in order to be able to delete the objects
@@ -273,7 +273,7 @@ public class Rectangle : MonoBehaviour
                 & StartWallPoint_Rect.transform.position.x > EndWallPoint_Rect.transform.position.x)
             {
                 GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
-                EndWallPoint_Rect.transform.position + (increment * i)
+                EndWallPoint_Rect.transform.position + new Vector3(0, 0.7f, 0) + (increment * i)
                 * (EndWallPoint_Rect.transform.right), StartWallPoint_Rect.transform.rotation);
 
                 //Converts the layers to "Default" in order to be able to delete the objects
@@ -284,7 +284,7 @@ public class Rectangle : MonoBehaviour
                 & StartWallPoint_Rect.transform.position.x < EndWallPoint_Rect.transform.position.x)
             {
                 GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
-                EndWallPoint_Rect.transform.position + (increment * i)
+                EndWallPoint_Rect.transform.position + new Vector3(0, 0.7f, 0) + (increment * i)
                 * (-EndWallPoint_Rect.transform.right), StartWallPoint_Rect.transform.rotation);
 
                 //Converts the layers to "Default" in order to be able to delete the objects
@@ -295,7 +295,7 @@ public class Rectangle : MonoBehaviour
                 & StartWallPoint_Rect.transform.position.x > EndWallPoint_Rect.transform.position.x)
             {
                 GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
-                EndWallPoint_Rect.transform.position + (increment * i)
+                EndWallPoint_Rect.transform.position + new Vector3(0, 0.7f, 0) + (increment * i)
                 * (EndWallPoint_Rect.transform.right), StartWallPoint_Rect.transform.rotation);
 
                 //Converts the layers to "Default" in order to be able to delete the objects
@@ -316,7 +316,7 @@ public class Rectangle : MonoBehaviour
                 & StartWallPoint_Rect.transform.position.x < EndWallPoint_Rect.transform.position.x)
             {
                 GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
-                StartWallPoint_Rect.transform.position + (increment * i)
+                StartWallPoint_Rect.transform.position + new Vector3(0, 0.7f, 0) + (increment * i)
                 * (-StartWallPoint_Rect.transform.forward), StartWallPoint_Rect.transform.rotation);
 
                 //Converts the layers to "Default" in order to be able to delete the objects
@@ -327,7 +327,7 @@ public class Rectangle : MonoBehaviour
                 & StartWallPoint_Rect.transform.position.x > EndWallPoint_Rect.transform.position.x)
             {
                 GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
-                EndWallPoint_Rect.transform.position + (increment * i)
+                EndWallPoint_Rect.transform.position + new Vector3(0, 0.7f, 0) + (increment * i)
                 * (EndWallPoint_Rect.transform.forward), StartWallPoint_Rect.transform.rotation);
 
                 //Converts the layers to "Default" in order to be able to delete the objects
@@ -338,7 +338,7 @@ public class Rectangle : MonoBehaviour
                 & StartWallPoint_Rect.transform.position.x < EndWallPoint_Rect.transform.position.x)
             {
                 GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
-                StartWallPoint_Rect.transform.position + (increment * i)
+                StartWallPoint_Rect.transform.position + new Vector3(0, 0.7f, 0) + (increment * i)
                 * (StartWallPoint_Rect.transform.forward), StartWallPoint_Rect.transform.rotation);
 
                 //Converts the layers to "Default" in order to be able to delete the objects
@@ -349,7 +349,7 @@ public class Rectangle : MonoBehaviour
                 & StartWallPoint_Rect.transform.position.x > EndWallPoint_Rect.transform.position.x)
             {
                 GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
-                EndWallPoint_Rect.transform.position + (increment * i)
+                EndWallPoint_Rect.transform.position + new Vector3(0, 0.7f, 0) + (increment * i)
                 * (-StartWallPoint_Rect.transform.forward), StartWallPoint_Rect.transform.rotation);
 
                 //Converts the layers to "Default" in order to be able to delete the objects
@@ -369,8 +369,8 @@ public class Rectangle : MonoBehaviour
         //Resets the position of the StartWallPoint_Rect and EndWallPoint_Rect to avoid 
         //deleting them
         Vector3 initial_position = new Vector3(-0.106f, 1.25f, -0.77f);
-        StartWallPoint_Rect.transform.position = initial_position;
-        EndWallPoint_Rect.transform.position = initial_position;
+        StartWallPoint_Rect.transform.position = initial_position + new Vector3(0, 0.7f, 0);
+        EndWallPoint_Rect.transform.position = initial_position + new Vector3(0, 0.7f, 0);
 
     }
     void adjust(Vector3 clickpoint)
@@ -401,7 +401,7 @@ public class Rectangle : MonoBehaviour
             (StartWallPoint_Rect.transform.position.y + GuidingPoint_1.transform.position.y)/2,
             (StartWallPoint_Rect.transform.position.z + GuidingPoint_1.transform.position.z)/2);
 
-        IntermediateWall_top.transform.position = distance_top;
+        IntermediateWall_top.transform.position = distance_top + new Vector3(0, 0.7f, 0);
 
         //Scale distance
         float distance_top_s = Vector3.Distance(StartWallPoint_Rect.transform.position,
@@ -418,7 +418,7 @@ public class Rectangle : MonoBehaviour
             (EndWallPoint_Rect.transform.position.y + GuidingPoint_1.transform.position.y) / 2,
             (EndWallPoint_Rect.transform.position.z + GuidingPoint_1.transform.position.z) / 2);
 
-        IntermediateWall_right.transform.position = distance_right;
+        IntermediateWall_right.transform.position = distance_right + new Vector3(0, 0.7f, 0);
 
         //Scale distance
         float distance_right_s = Vector3.Distance(EndWallPoint_Rect.transform.position,
@@ -435,7 +435,7 @@ public class Rectangle : MonoBehaviour
             (EndWallPoint_Rect.transform.position.y + GuidingPoint_2.transform.position.y) / 2,
             (EndWallPoint_Rect.transform.position.z + GuidingPoint_2.transform.position.z) / 2);
 
-        IntermediateWall_bottom.transform.position = distance_bottom;
+        IntermediateWall_bottom.transform.position = distance_bottom + new Vector3(0, 0.7f, 0);
 
         //Scale distance
         float distance_bottom_s = Vector3.Distance(EndWallPoint_Rect.transform.position,
@@ -452,7 +452,7 @@ public class Rectangle : MonoBehaviour
             (StartWallPoint_Rect.transform.position.y + GuidingPoint_2.transform.position.y) / 2,
             (StartWallPoint_Rect.transform.position.z + GuidingPoint_2.transform.position.z) / 2);
 
-        IntermediateWall_left.transform.position = distance_left;
+        IntermediateWall_left.transform.position = distance_left + new Vector3(0, 0.7f, 0);
 
         //Scale distance
         float distance_left_s = Vector3.Distance(StartWallPoint_Rect.transform.position,
