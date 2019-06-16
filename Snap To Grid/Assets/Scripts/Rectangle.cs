@@ -142,17 +142,11 @@ public class Rectangle : MonoBehaviour
         Destroy(IntermediateWall_bottom);
         Destroy(IntermediateWall_left);
 
-        //////////////
+        //Attaches guiding points on the grid
         GuidingPoint_1.transform.position = new Vector3(GuidingPoint_1.transform.position.x,
             1.5f, GuidingPoint_1.transform.position.z);
         GuidingPoint_2.transform.position = new Vector3(GuidingPoint_2.transform.position.x,
                     1.5f, GuidingPoint_2.transform.position.z);
-
-
-
-
-
-
 
 
 
