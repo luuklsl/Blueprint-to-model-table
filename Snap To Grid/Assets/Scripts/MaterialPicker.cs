@@ -5,13 +5,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
 
-//BlackJack and Hookers
-public class UI_Buttons : MonoBehaviour
+public class MaterialPicker : MonoBehaviour
 {
     public GameObject mButtonPreFab = null;
-    public GameObject[] drawingModes = null;
+    public Material[] mMaterial = null;
 
     private ToggleGroup mToggleGroup = null;
+
+    public static Material selectedMaterial = null;
     // Start is called before the first frame update
     void Awake()
     {
@@ -22,12 +23,12 @@ public class UI_Buttons : MonoBehaviour
     // Update is called once per frame
     private void CreateButtons()
     {
-        for (int i = 0; i < drawingModes.Length; i++)
+        for (int i = 0; i < mMaterial.Length; i++)
         {
             GameObject newButton = Instantiate(mButtonPreFab);
             newButton.transform.SetParent(transform);
 
-            string drawingModeName = drawingModes[i].name;
+            string drawingModeName = mMaterial[i].name;
             newButton.GetComponentInChildren<Text>().text = drawingModeName;
             newButton.name = drawingModeName;
             //newButton.tag = "DrawingMode" + i.ToString(); ;
@@ -41,7 +42,7 @@ public class UI_Buttons : MonoBehaviour
                 toggle.isOn = true;
             Debug.Log("Create Button" + i);
         }
-        
+
 
     }
 
@@ -55,15 +56,12 @@ public class UI_Buttons : MonoBehaviour
         foreach (Toggle toggle in activeToggles)
         {
             print(toggle.gameObject.name);
-            for (int i = 0; i < drawingModes.Length; i++)
+
+            for (int i = 0; i < mMaterial.Length; i++)
             {
-                if (toggle.gameObject.name == drawingModes[i].name)
+                if (toggle.gameObject.name == mMaterial[i].name)
                 {
-                    drawingModes[i].SetActive(true);
-                }
-                else
-                {
-                    drawingModes[i].SetActive(false);
+                    selectedMaterial = mMaterial[i];
                 }
             }
         }

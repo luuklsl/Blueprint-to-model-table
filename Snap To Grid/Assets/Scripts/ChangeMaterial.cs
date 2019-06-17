@@ -28,7 +28,8 @@ public class ChangeMaterial : MonoBehaviour
     private void ChooseMaterial()
     {
         //Debug.Log(Input.mouseScrollDelta);
-        mouseWheelRotation += Input.mouseScrollDelta.y;
-        selectedMaterial = materials[(int)mouseWheelRotation%materials.Length];
+        //mouseWheelRotation += Input.mouseScrollDelta.y;
+        //selectedMaterial = materials[(int)mouseWheelRotation%materials.Length];
+        selectedMaterial = MaterialPicker.selectedMaterial;
     }
 }
