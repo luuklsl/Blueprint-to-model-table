@@ -137,12 +137,18 @@ public class Line : MonoBehaviour
         creating = true;
         StartWallPoint.transform.position = grid.GetNearestPointOnGrid(clickpoint);
 
+        //Changes the material of the StartWallPoint
+        StartWallPoint.GetComponent<Renderer>().material = MaterialPicker.selectedMaterial;
+
+
 
         IntermediateWall = (GameObject)Instantiate(IntermediateWallPrefab,
             StartWallPoint.transform.position, Quaternion.identity);
 
+        //Changes the material of the intermediatewall
+        IntermediateWall.GetComponent<Renderer>().material = MaterialPicker.selectedMaterial;
 
-        
+
         //if (nearestWallSnapping) 
         //{ 
         //    StartWallPoint.transform.position = closestWallTo(clickpoint) 
@@ -156,6 +162,9 @@ public class Line : MonoBehaviour
         //Set creating to false and take the endpoint from a raycast 
         creating = false;
         EndWallPoint.transform.position = grid.GetNearestPointOnGrid(clickpoint);
+
+        //Changes the material of the EndWallPoint
+        EndWallPoint.GetComponent<Renderer>().material = MaterialPicker.selectedMaterial;
 
 
         //Some special cases that might happen 
@@ -197,7 +206,7 @@ public class Line : MonoBehaviour
             StartWallPoint.transform.position + new Vector3(0, 0.7f, 0) + (increment * i)
             * StartWallPoint.transform.forward, StartWallPoint.transform.rotation);
 
-            building_wall.tag = "building_wall";
+            //building_wall.tag = "building_wall";
             building_walls.Add(building_wall);
 
             //Converts the layers to "Default" in order to be able to delete the objects 
@@ -212,6 +221,8 @@ public class Line : MonoBehaviour
             //with the grid
             building_wall.transform.position = new Vector3(building_wall.transform.position.x,
                 1.5f, building_wall.transform.position.z);
+
+            building_wall.GetComponent<Renderer>().material = MaterialPicker.selectedMaterial;
         }
 
 
