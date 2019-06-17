@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -136,9 +136,13 @@ public class Line : MonoBehaviour
     {
         creating = true;
         StartWallPoint.transform.position = grid.GetNearestPointOnGrid(clickpoint);
+
+
         IntermediateWall = (GameObject)Instantiate(IntermediateWallPrefab,
             StartWallPoint.transform.position, Quaternion.identity);
 
+
+        
         //if (nearestWallSnapping) 
         //{ 
         //    StartWallPoint.transform.position = closestWallTo(clickpoint) 
@@ -152,6 +156,7 @@ public class Line : MonoBehaviour
         //Set creating to false and take the endpoint from a raycast 
         creating = false;
         EndWallPoint.transform.position = grid.GetNearestPointOnGrid(clickpoint);
+
 
         //Some special cases that might happen 
         if (xDirectionSnapping)
@@ -189,7 +194,7 @@ public class Line : MonoBehaviour
         {
 
             GameObject building_wall = (GameObject)Instantiate(IntermediateWallPrefab,
-            StartWallPoint.transform.position + (increment * i)
+            StartWallPoint.transform.position + new Vector3(0, 0.7f, 0) + (increment * i)
             * StartWallPoint.transform.forward, StartWallPoint.transform.rotation);
 
             building_wall.tag = "building_wall";
@@ -200,6 +205,13 @@ public class Line : MonoBehaviour
             //and crashing the game. Instead it just repositions them to their default 
             //position 
             building_wall.layer = 0;
+
+
+
+            //Lifts the wall segments upwards so that they are on the same level
+            //with the grid
+            building_wall.transform.position = new Vector3(building_wall.transform.position.x,
+                1.5f, building_wall.transform.position.z);
         }
 
 
@@ -208,7 +220,7 @@ public class Line : MonoBehaviour
 
         //Resets the position of the StartWallPoint and EndWallPoint to avoid  
         //deleting them 
-        Vector3 initial_position = new Vector3(-0.106f, 1.25f, -0.77f);
+        Vector3 initial_position = new Vector3(-0.106f, 1.5f, -0.77f);
         StartWallPoint.transform.position = initial_position;
         EndWallPoint.transform.position = initial_position;
 
