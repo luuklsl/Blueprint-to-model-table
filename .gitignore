@@ -21,3 +21,6 @@
 sysinfo.txt
 
 Snap To Grid/\.vs/
+
+*.zip
+*.zip.*
