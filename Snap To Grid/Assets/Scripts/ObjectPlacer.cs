@@ -5,9 +5,6 @@ public class ObjectPlacer : MonoBehaviour
     [SerializeField]
     private GameObject placeableObjectPrefab;
 
-    //[SerializeField]
-    //private KeyCode newObjectHotkey = KeyCode.A;
-
     private GameObject currentPlaceableObject;
 
     private GameObject lookedAt1 = null;
@@ -17,26 +14,15 @@ public class ObjectPlacer : MonoBehaviour
 
     private void Update()
     {
-        if (currentPlaceableObject != null)
-        {
             MoveCurrentObjectToMouse();
-            //RotateFromMouseWheel();
-            //ReleaseIfClicked();
-        }
-        else
-        {
-            HandleNewObject();
-        }
+
     }
 
     private void HandleNewObject()
     {
-        if (currentPlaceableObject != null)
+        if (currentPlaceableObject == null)
         {
-            Destroy(currentPlaceableObject);
-        }
-        else
-        {
+            //Destroy(currentPlaceableObject);
             currentPlaceableObject = Instantiate(placeableObjectPrefab);
         }
     }
@@ -55,8 +41,12 @@ public class ObjectPlacer : MonoBehaviour
             {
                 GameObject block2 = hitInfo2.collider.gameObject;
 
-                if (block1.name != "Terrain")
+                if (block1.name != "Terrain" && block1.name != "DoorWay" && Input.GetMouseButton(0))
                 {
+                    HandleNewObject();
+                    currentPlaceableObject.transform.position = block1.transform.position;
+                    currentPlaceableObject.transform.rotation = block1.transform.rotation;
+
                     Debug.DrawRay(block1.transform.position, block1.transform.forward * 1, Color.red);
 
                     if (lookedAt1 != block1 && lookedAt1 != null)
@@ -68,16 +58,23 @@ public class ObjectPlacer : MonoBehaviour
                     block2.GetComponent<Renderer>().enabled = false;
                     lookedAt1 = block1;
                     lookedAt2 = block2;
-                    currentPlaceableObject.transform.position = block1.transform.position;
-                    currentPlaceableObject.transform.rotation = block1.transform.rotation;
 
-                    if (Input.GetMouseButtonDown(0))
+                    /*
+                    if (Input.GetMouseButtonUp(0))
                     {
-                        currentPlaceableObject = null;
+                        //currentPlaceableObject = null;
                         Destroy(block1);
                         Destroy(block2);
                     }
-
+                    */
+                }
+                else if (block1.name != "Terrain" && Input.GetMouseButtonUp(0))
+                {
+                    currentPlaceableObject.transform.position = block1.transform.position;
+                    currentPlaceableObject.transform.rotation = block1.transform.rotation;
+                    Destroy(block1);
+                    Destroy(block2);
+                    currentPlaceableObject = null;
                 }
             }
         }

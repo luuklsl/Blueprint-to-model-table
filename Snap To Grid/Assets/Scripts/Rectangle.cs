@@ -113,12 +113,21 @@ public class Rectangle : MonoBehaviour
         
         StartWallPoint_Rect.transform.position = grid.GetNearestPointOnGrid(clickpoint);
 
+        //Changes the material of the StartWallPoint_Rect
+        StartWallPoint_Rect.GetComponent<Renderer>().material = MaterialPicker.selectedMaterial;
 
-        
+
+
         GuidingPoint_1 = (GameObject)Instantiate(IntermediateWallPrefab,
             StartWallPoint_Rect.transform.position, Quaternion.identity);
         GuidingPoint_2 = (GameObject)Instantiate(IntermediateWallPrefab,
             StartWallPoint_Rect.transform.position, Quaternion.identity);
+
+        //Changes the material of the GuidingPoints
+        GuidingPoint_1.GetComponent<Renderer>().material = MaterialPicker.selectedMaterial;
+        GuidingPoint_2.GetComponent<Renderer>().material = MaterialPicker.selectedMaterial;
+
+
 
 
         IntermediateWall_top = (GameObject)Instantiate(IntermediateWallPrefab,
@@ -129,12 +138,28 @@ public class Rectangle : MonoBehaviour
             StartWallPoint_Rect.transform.position, Quaternion.identity);
         IntermediateWall_left = (GameObject)Instantiate(IntermediateWallPrefab,
             StartWallPoint_Rect.transform.position, Quaternion.identity);
+
+
+        //Changes the material of the IntermediateWalls
+        IntermediateWall_top.GetComponent<Renderer>().material = MaterialPicker.selectedMaterial;
+        IntermediateWall_right.GetComponent<Renderer>().material = MaterialPicker.selectedMaterial;
+        IntermediateWall_bottom.GetComponent<Renderer>().material = MaterialPicker.selectedMaterial;
+        IntermediateWall_left.GetComponent<Renderer>().material = MaterialPicker.selectedMaterial;
+
+
+
+
+
+
     }
     void setEnd(Vector3 clickpoint)
     {
         creating = false;
         
         EndWallPoint_Rect.transform.position = grid.GetNearestPointOnGrid(clickpoint);
+
+        //Changes the material of the EndWallPoint_Rect
+        EndWallPoint_Rect.GetComponent<Renderer>().material = MaterialPicker.selectedMaterial;
 
         //Destroys the intermediate walls used for visual and replaces them with wall segments
         Destroy(IntermediateWall_top);
@@ -177,6 +202,10 @@ public class Rectangle : MonoBehaviour
                 //with the grid
                 wall_between.transform.position = new Vector3(wall_between.transform.position.x,
                     1.5f, wall_between.transform.position.z);
+
+                //Changes the material of the wall segment
+                wall_between.GetComponent<Renderer>().material = MaterialPicker.selectedMaterial;
+
             }
 
             else if (StartWallPoint_Rect.transform.position.z > EndWallPoint_Rect.transform.position.z
@@ -193,6 +222,9 @@ public class Rectangle : MonoBehaviour
                 //with the grid
                 wall_between.transform.position = new Vector3(wall_between.transform.position.x,
                     1.5f, wall_between.transform.position.z);
+
+                //Changes the material of the wall segment
+                wall_between.GetComponent<Renderer>().material = MaterialPicker.selectedMaterial;
             }
 
             else if (StartWallPoint_Rect.transform.position.z < EndWallPoint_Rect.transform.position.z
@@ -209,6 +241,9 @@ public class Rectangle : MonoBehaviour
                 //with the grid
                 wall_between.transform.position = new Vector3(wall_between.transform.position.x,
                     1.5f, wall_between.transform.position.z);
+
+                //Changes the material of the wall segment
+                wall_between.GetComponent<Renderer>().material = MaterialPicker.selectedMaterial;
             }
 
             else if (StartWallPoint_Rect.transform.position.z < EndWallPoint_Rect.transform.position.z
@@ -225,6 +260,9 @@ public class Rectangle : MonoBehaviour
                 //with the grid
                 wall_between.transform.position = new Vector3(wall_between.transform.position.x,
                     1.5f, wall_between.transform.position.z);
+
+                //Changes the material of the wall segment
+                wall_between.GetComponent<Renderer>().material = MaterialPicker.selectedMaterial;
             }
 
         }
@@ -250,6 +288,9 @@ public class Rectangle : MonoBehaviour
                 //with the grid
                 wall_between.transform.position = new Vector3(wall_between.transform.position.x,
                     1.5f, wall_between.transform.position.z);
+
+                //Changes the material of the wall segment
+                wall_between.GetComponent<Renderer>().material = MaterialPicker.selectedMaterial;
             }
 
             else if (StartWallPoint_Rect.transform.position.z > EndWallPoint_Rect.transform.position.z
@@ -266,6 +307,9 @@ public class Rectangle : MonoBehaviour
                 //with the grid
                 wall_between.transform.position = new Vector3(wall_between.transform.position.x,
                     1.5f, wall_between.transform.position.z);
+
+                //Changes the material of the wall segment
+                wall_between.GetComponent<Renderer>().material = MaterialPicker.selectedMaterial;
             }
 
             else if (StartWallPoint_Rect.transform.position.z < EndWallPoint_Rect.transform.position.z
@@ -282,6 +326,9 @@ public class Rectangle : MonoBehaviour
                 //with the grid
                 wall_between.transform.position = new Vector3(wall_between.transform.position.x,
                     1.5f, wall_between.transform.position.z);
+
+                //Changes the material of the wall segment
+                wall_between.GetComponent<Renderer>().material = MaterialPicker.selectedMaterial;
             }
 
             else if (StartWallPoint_Rect.transform.position.z < EndWallPoint_Rect.transform.position.z
@@ -298,6 +345,9 @@ public class Rectangle : MonoBehaviour
                 //with the grid
                 wall_between.transform.position = new Vector3(wall_between.transform.position.x,
                     1.5f, wall_between.transform.position.z);
+
+                //Changes the material of the wall segment
+                wall_between.GetComponent<Renderer>().material = MaterialPicker.selectedMaterial;
             }
 
         }
@@ -324,6 +374,9 @@ public class Rectangle : MonoBehaviour
                 //with the grid
                 wall_between.transform.position = new Vector3(wall_between.transform.position.x,
                     1.5f, wall_between.transform.position.z);
+
+                //Changes the material of the wall segment
+                wall_between.GetComponent<Renderer>().material = MaterialPicker.selectedMaterial;
             }
 
             else if (StartWallPoint_Rect.transform.position.z > EndWallPoint_Rect.transform.position.z
@@ -340,6 +393,9 @@ public class Rectangle : MonoBehaviour
                 //with the grid
                 wall_between.transform.position = new Vector3(wall_between.transform.position.x,
                     1.5f, wall_between.transform.position.z);
+
+                //Changes the material of the wall segment
+                wall_between.GetComponent<Renderer>().material = MaterialPicker.selectedMaterial;
             }
 
             else if (StartWallPoint_Rect.transform.position.z < EndWallPoint_Rect.transform.position.z
@@ -356,6 +412,9 @@ public class Rectangle : MonoBehaviour
                 //with the grid
                 wall_between.transform.position = new Vector3(wall_between.transform.position.x,
                     1.5f, wall_between.transform.position.z);
+
+                //Changes the material of the wall segment
+                wall_between.GetComponent<Renderer>().material = MaterialPicker.selectedMaterial;
             }
 
             else if (StartWallPoint_Rect.transform.position.z < EndWallPoint_Rect.transform.position.z
@@ -372,6 +431,9 @@ public class Rectangle : MonoBehaviour
                 //with the grid
                 wall_between.transform.position = new Vector3(wall_between.transform.position.x,
                     1.5f, wall_between.transform.position.z);
+
+                //Changes the material of the wall segment
+                wall_between.GetComponent<Renderer>().material = MaterialPicker.selectedMaterial;
             }
 
         }
@@ -398,6 +460,9 @@ public class Rectangle : MonoBehaviour
                 //with the grid
                 wall_between.transform.position = new Vector3(wall_between.transform.position.x,
                     1.5f, wall_between.transform.position.z);
+
+                //Changes the material of the wall segment
+                wall_between.GetComponent<Renderer>().material = MaterialPicker.selectedMaterial;
             }
 
             else if (StartWallPoint_Rect.transform.position.z > EndWallPoint_Rect.transform.position.z
@@ -414,6 +479,9 @@ public class Rectangle : MonoBehaviour
                 //with the grid
                 wall_between.transform.position = new Vector3(wall_between.transform.position.x,
                     1.5f, wall_between.transform.position.z);
+
+                //Changes the material of the wall segment
+                wall_between.GetComponent<Renderer>().material = MaterialPicker.selectedMaterial;
             }
 
             else if (StartWallPoint_Rect.transform.position.z < EndWallPoint_Rect.transform.position.z
@@ -430,6 +498,9 @@ public class Rectangle : MonoBehaviour
                 //with the grid
                 wall_between.transform.position = new Vector3(wall_between.transform.position.x,
                     1.5f, wall_between.transform.position.z);
+
+                //Changes the material of the wall segment
+                wall_between.GetComponent<Renderer>().material = MaterialPicker.selectedMaterial;
             }
 
             else if (StartWallPoint_Rect.transform.position.z < EndWallPoint_Rect.transform.position.z
@@ -446,6 +517,9 @@ public class Rectangle : MonoBehaviour
                 //with the grid
                 wall_between.transform.position = new Vector3(wall_between.transform.position.x,
                     1.5f, wall_between.transform.position.z);
+
+                //Changes the material of the wall segment
+                wall_between.GetComponent<Renderer>().material = MaterialPicker.selectedMaterial;
             }
 
         }
