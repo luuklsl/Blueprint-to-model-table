@@ -16,6 +16,7 @@ public class Rectangle : MonoBehaviour
     GameObject GuidingPoint_2;
 
     public GameObject IntermediateWallPrefab;
+    public GameObject IntermediateWallPrefabRotated;
 
 
     //These gameobjects are create only as visual guides and are subsequently replaced
@@ -130,11 +131,11 @@ public class Rectangle : MonoBehaviour
 
 
 
-        IntermediateWall_top = (GameObject)Instantiate(IntermediateWallPrefab,
+        IntermediateWall_top = (GameObject)Instantiate(IntermediateWallPrefabRotated,
             StartWallPoint_Rect.transform.position, Quaternion.identity);
         IntermediateWall_right = (GameObject)Instantiate(IntermediateWallPrefab,
             StartWallPoint_Rect.transform.position, Quaternion.identity);
-        IntermediateWall_bottom = (GameObject)Instantiate(IntermediateWallPrefab,
+        IntermediateWall_bottom = (GameObject)Instantiate(IntermediateWallPrefabRotated,
             StartWallPoint_Rect.transform.position, Quaternion.identity);
         IntermediateWall_left = (GameObject)Instantiate(IntermediateWallPrefab,
             StartWallPoint_Rect.transform.position, Quaternion.identity);
@@ -191,12 +192,12 @@ public class Rectangle : MonoBehaviour
             if (StartWallPoint_Rect.transform.position.z > EndWallPoint_Rect.transform.position.z
                 & StartWallPoint_Rect.transform.position.x < EndWallPoint_Rect.transform.position.x)
             {
-                GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
+                GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefabRotated,
                 StartWallPoint_Rect.transform.position + (increment * i)
-                * (StartWallPoint_Rect.transform.right), StartWallPoint_Rect.transform.rotation);
+                * (StartWallPoint_Rect.transform.right), IntermediateWallPrefabRotated.transform.rotation);
 
                 //Converts the layers to "Default" in order to be able to delete the objects
-                wall_between.layer = 0;
+                wall_between.layer = 10;
 
                 //Lifts the wall segments upwards so that they are on the same level
                 //with the grid
@@ -211,12 +212,12 @@ public class Rectangle : MonoBehaviour
             else if (StartWallPoint_Rect.transform.position.z > EndWallPoint_Rect.transform.position.z
                 & StartWallPoint_Rect.transform.position.x > EndWallPoint_Rect.transform.position.x)
             {
-                GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
+                GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefabRotated,
                 StartWallPoint_Rect.transform.position +(increment * i)
-                * (-StartWallPoint_Rect.transform.right), StartWallPoint_Rect.transform.rotation);
+                * (-StartWallPoint_Rect.transform.right), IntermediateWallPrefabRotated.transform.rotation);
 
                 //Converts the layers to "Default" in order to be able to delete the objects
-                wall_between.layer = 0;
+                wall_between.layer = 10;
 
                 //Lifts the wall segments upwards so that they are on the same level
                 //with the grid
@@ -230,12 +231,12 @@ public class Rectangle : MonoBehaviour
             else if (StartWallPoint_Rect.transform.position.z < EndWallPoint_Rect.transform.position.z
                  & StartWallPoint_Rect.transform.position.x < EndWallPoint_Rect.transform.position.x)
             {
-                GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
+                GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefabRotated,
                 StartWallPoint_Rect.transform.position + (increment * i)
-                * (StartWallPoint_Rect.transform.right), StartWallPoint_Rect.transform.rotation);
+                * (StartWallPoint_Rect.transform.right), IntermediateWallPrefabRotated.transform.rotation);
 
                 //Converts the layers to "Default" in order to be able to delete the objects
-                wall_between.layer = 0;
+                wall_between.layer = 10;
 
                 //Lifts the wall segments upwards so that they are on the same level
                 //with the grid
@@ -249,12 +250,12 @@ public class Rectangle : MonoBehaviour
             else if (StartWallPoint_Rect.transform.position.z < EndWallPoint_Rect.transform.position.z
                 & StartWallPoint_Rect.transform.position.x > EndWallPoint_Rect.transform.position.x)
             {
-                GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
+                GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefabRotated,
                 StartWallPoint_Rect.transform.position + (increment * i)
-                * (-StartWallPoint_Rect.transform.right), StartWallPoint_Rect.transform.rotation);
+                * (-StartWallPoint_Rect.transform.right), IntermediateWallPrefabRotated.transform.rotation);
 
                 //Converts the layers to "Default" in order to be able to delete the objects
-                wall_between.layer = 0;
+                wall_between.layer = 10;
 
                 //Lifts the wall segments upwards so that they are on the same level
                 //with the grid
@@ -282,7 +283,7 @@ public class Rectangle : MonoBehaviour
                 * (-StartWallPoint_Rect.transform.forward), StartWallPoint_Rect.transform.rotation);
 
                 //Converts the layers to "Default" in order to be able to delete the objects
-                wall_between.layer = 0;
+                wall_between.layer = 10;
 
                 //Lifts the wall segments upwards so that they are on the same level
                 //with the grid
@@ -301,7 +302,7 @@ public class Rectangle : MonoBehaviour
                 * (StartWallPoint_Rect.transform.forward), StartWallPoint_Rect.transform.rotation);
 
                 //Converts the layers to "Default" in order to be able to delete the objects
-                wall_between.layer = 0;
+                wall_between.layer = 10;
 
                 //Lifts the wall segments upwards so that they are on the same level
                 //with the grid
@@ -320,7 +321,7 @@ public class Rectangle : MonoBehaviour
                 * (StartWallPoint_Rect.transform.forward), StartWallPoint_Rect.transform.rotation);
 
                 //Converts the layers to "Default" in order to be able to delete the objects
-                wall_between.layer = 0;
+                wall_between.layer = 10;
 
                 //Lifts the wall segments upwards so that they are on the same level
                 //with the grid
@@ -339,7 +340,7 @@ public class Rectangle : MonoBehaviour
                 * (StartWallPoint_Rect.transform.forward), StartWallPoint_Rect.transform.rotation);
 
                 //Converts the layers to "Default" in order to be able to delete the objects
-                wall_between.layer = 0;
+                wall_between.layer = 10;
 
                 //Lifts the wall segments upwards so that they are on the same level
                 //with the grid
@@ -363,12 +364,12 @@ public class Rectangle : MonoBehaviour
             if (StartWallPoint_Rect.transform.position.z > EndWallPoint_Rect.transform.position.z
                 & StartWallPoint_Rect.transform.position.x < EndWallPoint_Rect.transform.position.x)
             {
-                GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
+                GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefabRotated,
                 EndWallPoint_Rect.transform.position + (increment * i)
-                * (-EndWallPoint_Rect.transform.right), StartWallPoint_Rect.transform.rotation);
+                * (-EndWallPoint_Rect.transform.right), IntermediateWallPrefabRotated.transform.rotation);
 
                 //Converts the layers to "Default" in order to be able to delete the objects
-                wall_between.layer = 0;
+                wall_between.layer = 10;
 
                 //Lifts the wall segments upwards so that they are on the same level
                 //with the grid
@@ -382,12 +383,12 @@ public class Rectangle : MonoBehaviour
             else if (StartWallPoint_Rect.transform.position.z > EndWallPoint_Rect.transform.position.z
                 & StartWallPoint_Rect.transform.position.x > EndWallPoint_Rect.transform.position.x)
             {
-                GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
+                GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefabRotated,
                 EndWallPoint_Rect.transform.position + (increment * i)
-                * (EndWallPoint_Rect.transform.right), StartWallPoint_Rect.transform.rotation);
+                * (EndWallPoint_Rect.transform.right), IntermediateWallPrefabRotated.transform.rotation);
 
                 //Converts the layers to "Default" in order to be able to delete the objects
-                wall_between.layer = 0;
+                wall_between.layer = 10;
 
                 //Lifts the wall segments upwards so that they are on the same level
                 //with the grid
@@ -401,12 +402,12 @@ public class Rectangle : MonoBehaviour
             else if (StartWallPoint_Rect.transform.position.z < EndWallPoint_Rect.transform.position.z
                 & StartWallPoint_Rect.transform.position.x < EndWallPoint_Rect.transform.position.x)
             {
-                GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
+                GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefabRotated,
                 EndWallPoint_Rect.transform.position + (increment * i)
-                * (-EndWallPoint_Rect.transform.right), StartWallPoint_Rect.transform.rotation);
+                * (-EndWallPoint_Rect.transform.right), IntermediateWallPrefabRotated.transform.rotation);
 
                 //Converts the layers to "Default" in order to be able to delete the objects
-                wall_between.layer = 0;
+                wall_between.layer = 10;
 
                 //Lifts the wall segments upwards so that they are on the same level
                 //with the grid
@@ -420,12 +421,12 @@ public class Rectangle : MonoBehaviour
             else if (StartWallPoint_Rect.transform.position.z < EndWallPoint_Rect.transform.position.z
                 & StartWallPoint_Rect.transform.position.x > EndWallPoint_Rect.transform.position.x)
             {
-                GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefab,
+                GameObject wall_between = (GameObject)Instantiate(IntermediateWallPrefabRotated,
                 EndWallPoint_Rect.transform.position + (increment * i)
-                * (EndWallPoint_Rect.transform.right), StartWallPoint_Rect.transform.rotation);
+                * (EndWallPoint_Rect.transform.right), IntermediateWallPrefabRotated.transform.rotation);
 
                 //Converts the layers to "Default" in order to be able to delete the objects
-                wall_between.layer = 0;
+                wall_between.layer = 10;
 
                 //Lifts the wall segments upwards so that they are on the same level
                 //with the grid
@@ -454,7 +455,7 @@ public class Rectangle : MonoBehaviour
                 * (-StartWallPoint_Rect.transform.forward), StartWallPoint_Rect.transform.rotation);
 
                 //Converts the layers to "Default" in order to be able to delete the objects
-                wall_between.layer = 0;
+                wall_between.layer = 10;
 
                 //Lifts the wall segments upwards so that they are on the same level
                 //with the grid
@@ -473,7 +474,7 @@ public class Rectangle : MonoBehaviour
                 * (EndWallPoint_Rect.transform.forward), StartWallPoint_Rect.transform.rotation);
 
                 //Converts the layers to "Default" in order to be able to delete the objects
-                wall_between.layer = 0;
+                wall_between.layer = 10;
 
                 //Lifts the wall segments upwards so that they are on the same level
                 //with the grid
@@ -492,7 +493,7 @@ public class Rectangle : MonoBehaviour
                 * (StartWallPoint_Rect.transform.forward), StartWallPoint_Rect.transform.rotation);
 
                 //Converts the layers to "Default" in order to be able to delete the objects
-                wall_between.layer = 0;
+                wall_between.layer = 10;
 
                 //Lifts the wall segments upwards so that they are on the same level
                 //with the grid
@@ -511,7 +512,7 @@ public class Rectangle : MonoBehaviour
                 * (-StartWallPoint_Rect.transform.forward), StartWallPoint_Rect.transform.rotation);
 
                 //Converts the layers to "Default" in order to be able to delete the objects
-                wall_between.layer = 0;
+                wall_between.layer = 10;
 
                 //Lifts the wall segments upwards so that they are on the same level
                 //with the grid

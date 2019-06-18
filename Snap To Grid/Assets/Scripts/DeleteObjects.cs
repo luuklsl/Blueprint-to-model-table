@@ -20,8 +20,8 @@ public class DeleteObjects : MonoBehaviour
         {
             if (Physics.Raycast(ray, out hitInfo))
             {
-                name = hitInfo.transform.gameObject.name;
-                if (name != "Terrain" && name != "Grid")
+                int layer = hitInfo.transform.gameObject.layer;
+                if (layer == 10 || layer == 9)
                 {
                     Destroy(hitInfo.transform.gameObject);
                 }

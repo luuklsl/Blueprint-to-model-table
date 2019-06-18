@@ -213,7 +213,7 @@ public class Line : MonoBehaviour
             //Does not set Start and EndWallPoint to 'default' layer to avoid deleting them 
             //and crashing the game. Instead it just repositions them to their default 
             //position 
-            building_wall.layer = 0;
+            building_wall.layer = 10;
 
 
 
