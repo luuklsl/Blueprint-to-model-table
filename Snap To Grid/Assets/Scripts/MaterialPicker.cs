@@ -14,6 +14,11 @@ public class MaterialPicker : MonoBehaviour
 
     public static Material selectedMaterial = null;
     // Start is called before the first frame update
+    private void Start()
+    {
+        selectedMaterial = mMaterial[0];
+    }
+
     void Awake()
     {
         mToggleGroup = GetComponent<ToggleGroup>();
@@ -62,6 +67,7 @@ public class MaterialPicker : MonoBehaviour
                 if (toggle.gameObject.name == mMaterial[i].name)
                 {
                     selectedMaterial = mMaterial[i];
+                    Debug.Log(mMaterial[i].name);
                 }
             }
         }
