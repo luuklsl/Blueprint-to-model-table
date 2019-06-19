@@ -1,3 +1,11 @@
+//*******************
+//Source: YT video, channel unitylessons.com
+//URL: https://www.youtube.com/watch?v=h5EiXBJ2Zvc
+//Author: Florian Maurer
+//Adapted by Georgios Bermperidis for blueprint drawer project for the Virtual Reality Course - 201000201 
+//Utwente
+//*******************
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
